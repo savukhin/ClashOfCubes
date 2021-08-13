@@ -17,7 +17,7 @@ Shader "Unlit/CellUnlitShader"
         
         // ZWrite On
         ZTest Always
-        Cull Off
+        // Cull Off
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
