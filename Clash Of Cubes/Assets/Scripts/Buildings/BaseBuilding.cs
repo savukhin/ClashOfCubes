@@ -39,6 +39,16 @@ public abstract class BaseBuilding : MonoBehaviour
         }
     }
 
+    [System.NonSerialized] public Field field;
+
+    void Start() {
+        field.AddBuilding(this);
+    }
+
+    public void Choose() {
+        field.Choose(this);
+    }
+
     public void Build() {
         buildJob.Launch();
         StartCoroutine("BuildProcess");
@@ -47,14 +57,20 @@ public abstract class BaseBuilding : MonoBehaviour
     IEnumerator BuildProcess() {
         bar.min = buildJob.startTime.ToFloat();
         bar.max = buildJob.endTime.ToFloat();
-        print("min = " + bar.min + " start time " + buildJob.startTime.ToFloat() + " " + buildJob.startTime.ToString());
-        print("max = " + bar.max);
         while (isBuilding) {
             bar.current = Time.time;
-            print("current = " + Time.time);
             yield return null;
         }
         Destroy(bar);
-        print("Building " + this + " was builded");
+    }
+
+    public string UpgradeToString() {
+        string result = "";
+        if (nextLevel) {
+            result += "Upgrade 1";
+        } else {
+            result += "Nothing to upgrade";
+        }
+        return result;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StandardUIController : BaseUI
 {
@@ -11,8 +12,8 @@ public class StandardUIController : BaseUI
     }
     public Events events;
     public UIShop shop;
-
-    
+    public GameObject buildingActionsPanel;
+    public UIBuildingInfo buildingInfo;
 
     public void OpenShop() {
         blackPanel.gameObject.SetActive(true);
@@ -21,5 +22,14 @@ public class StandardUIController : BaseUI
 
     public void CloseMenu() {
         events.closeMenu.Invoke();
+    }
+
+    public void ChooseBuilding(BaseBuilding building) {
+        if (building == null) {
+            buildingActionsPanel.SetActive(false);
+            return;
+        }
+        buildingActionsPanel.SetActive(true);
+        buildingInfo.building = building;
     }
 }

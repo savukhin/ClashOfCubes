@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 6295694816590235833}
   - component: {fileID: 6295694816590235834}
   - component: {fileID: 6295694816590235782}
+  - component: {fileID: 3021208004688677403}
   m_Layer: 0
   m_Name: Empty Home
   m_TagString: Untagged
@@ -203,6 +204,7 @@ MonoBehaviour:
       hours: 0
       minutes: 0
       seconds: 3
+      milliseconds: 0
     endEvent:
       m_PersistentCalls:
         m_Calls:
@@ -222,6 +224,33 @@ MonoBehaviour:
   nextLevel: {fileID: 0}
   bar: {fileID: 6905797704802667892}
   str: asdf
+--- !u!114 &3021208004688677403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6295694816590235835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c7eb4e6435a914aa9eebd107b89a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6295694816590235782}
+        m_TargetAssemblyTypeName: BaseBuilding, Assembly-CSharp
+        m_MethodName: Choose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7222584424662818073
 GameObject:
   m_ObjectHideFlags: 0

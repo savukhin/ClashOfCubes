@@ -51,9 +51,8 @@ public class BuilderMode : BaseMode
     }
 
     public void Build() {
-        if (field.MakeBusyForBuilding(building)) {
+        if (field.Build(building)) {
             world.Buy(building.buildJob.price);
-            building.Build();
             world.SetStandardMode();
         } else {
             print("Unable to Build!");

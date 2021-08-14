@@ -67,4 +67,8 @@ public class World : MonoBehaviour
         standardMode.Launch();
         currentMode = standardMode;
     }
+
+    public void ChooseBuilding(BaseBuilding building) {
+        UI.ChooseBuilding(building);
+    }
 }

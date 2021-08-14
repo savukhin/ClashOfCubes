@@ -7,6 +7,10 @@ public class Field : MonoBehaviour
     public Cell cellPrefab;
     public Vector2 shape;
     public Camera mainCamera;
+    public HashSet<BaseBuilding> buildings = new HashSet<BaseBuilding>();
+    public World world;
+    [System.NonSerialized] public BaseBuilding choosenBuilding;
+    
 
     private Vector3 fieldSize;
     private Vector2 localCellSize;
@@ -15,13 +19,18 @@ public class Field : MonoBehaviour
 
     void Start()
     {
-        // size = GetComponent<Collider>().bounds.size;
-        // center = transform.position;
         CreateCells();
     }
 
     void OnEnable() {
         CreateCells();
+    }
+
+    public void AddBuilding(BaseBuilding building) {
+        if (!buildings.Contains(building)) {
+            building.field = this;
+            buildings.Add(building);
+        }
     }
 
     private void CreateCells() {
@@ -70,38 +79,6 @@ public class Field : MonoBehaviour
         return null;
     }
 
-    private Cell GetLeftCell(Cell cell) {
-        int X = ((int)cell.position.x);
-        int Y = ((int)cell.position.y);
-        if (X - 1 < 0)
-            return null;
-        return cells[X][Y];
-    }
-
-    private Cell GetRightCell(Cell cell) {
-        int X = ((int)cell.position.x);
-        int Y = ((int)cell.position.y);
-        if (X + 1 == shape.x)
-            return null;
-        return cells[X + 1][Y];
-    }
-
-    private Cell GetUpperCell(Cell cell) {
-        int X = ((int)cell.position.x);
-        int Y = ((int)cell.position.y);
-        if (Y + 1 == shape.y)
-            return null;
-        return cells[X][Y + 1];
-    }
-
-    private Cell GetBottomCell(Cell cell) {
-        int X = ((int)cell.position.x);
-        int Y = ((int)cell.position.y);
-        if (Y - 1 < 0)
-            return null;
-        return cells[X][Y - 1];
-    }
-
     private bool AbleToBuild(BaseBuilding building) {
         Cell cell = GetForwardCell();
         if (cell == null)
@@ -119,9 +96,12 @@ public class Field : MonoBehaviour
         return true;
     }
 
-    public bool MakeBusyForBuilding(BaseBuilding building) {
+    public bool Build(BaseBuilding building) {
         if (!AbleToBuild(building))
             return false;
+        
+        AddBuilding(building);
+        building.Build();
 
         Cell cell = GetForwardCell();
 
@@ -147,5 +127,9 @@ public class Field : MonoBehaviour
         position.x += localCellSize.x * building.shape.x / 2.0f - localCellSize.x / 2;
         position.z += localCellSize.y * building.shape.y / 2.0f - localCellSize.y / 2;
         return position;
+    }
+
+    public void Choose(BaseBuilding building) {
+        world.ChooseBuilding(building);
     }
 }

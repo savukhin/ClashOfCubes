@@ -34,9 +34,7 @@ public class Job
     }
 
     IEnumerator EndJob() {
-        Debug.Log("Wait for " + duration.ToFloat() + " Seconds");
         yield return new WaitForSeconds(duration.ToFloat());
-        Debug.Log("END");
         endEvent.Invoke();
     }
 
