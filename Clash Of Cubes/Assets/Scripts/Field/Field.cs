@@ -39,7 +39,7 @@ public class Field : MonoBehaviour
             
             for (int j = 0; j < shape.y; j++) {
                 float x = center.x - fieldSize.x / 2 + localCellSize.x / 2 + localCellSize.x * j;
-                Vector3 position = new Vector3(x, center.y, y);
+                Vector3 position = new Vector3(y, center.y, x);
                 cells[i].Add(
                     Instantiate(cellPrefab, position, Quaternion.identity, transform)
                     );
@@ -129,7 +129,7 @@ public class Field : MonoBehaviour
             for (int j = 0; j < building.shape.y; j++) {
                 int x = ((int)cell.position.x) + i;
                 int y = ((int)cell.position.y) + j;
-                // cells[x][y].gameObject.GetComponent<Renderer>().material.SetFloat("_Active", 1);
+                cells[x][y].gameObject.GetComponent<Renderer>().material.SetFloat("_Active", 1);
                 cells[x][y].busy = true;
             }
         }

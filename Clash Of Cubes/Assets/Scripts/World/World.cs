@@ -13,6 +13,7 @@ public class World : MonoBehaviour
     public BuilderMode builderMode;
     public Camera mainCamera;
     public UIRouter UI;
+    public int workers;
     
     public ResourceStack resources {
         get {
@@ -30,6 +31,19 @@ public class World : MonoBehaviour
 
     void Start() {
         currentMode = standardMode;
+    }
+
+    public void Buy(Price price) {
+        resources -= price;
+    }
+
+    public bool StartJob(Job job) {
+        if (resources < job.price)
+            return false;
+        Buy(job.price);
+        
+
+        return true;
     }
 
     public void StartBuilder(BaseBuilding prefab) {

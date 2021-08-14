@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EmptyHome : BaseBuilding
 {
+    public string str;
+
+    // public new List<Level<EmptyHomeUpgrade>> levels;
+
     // Start is called before the first frame update
     void Start()
     {

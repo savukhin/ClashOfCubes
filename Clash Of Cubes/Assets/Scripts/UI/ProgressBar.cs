@@ -26,7 +26,7 @@ public class ProgressBar : MonoBehaviour
 
     public float min {
         get {
-            return m_max;
+            return m_min;
         }
 
         set {
@@ -49,8 +49,9 @@ public class ProgressBar : MonoBehaviour
     private float width;
 
     void Refresh() {
-        handler.transform.localScale = new Vector3(m_current / m_max, 1f, 1f);
-        handler.transform.localPosition = new Vector3(-width / 2f + m_current / m_max / 2f * width, 0f, 0f);
+        float diff = (m_max - m_min);
+        handler.transform.localScale = new Vector3((m_current - m_min) / diff, 1f, 1f);
+        handler.transform.localPosition = new Vector3(-width / 2f + (m_current - m_min) / diff / 2f * width, 0f, 0f);
     }
 
     // Start is called before the first frame update

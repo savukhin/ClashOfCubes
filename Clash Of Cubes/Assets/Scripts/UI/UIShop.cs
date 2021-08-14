@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class UIShop : MonoBehaviour
     public GameObject content;
     public UIShopItem itemPrefab;
     public StandardUIController parent;
+    
+    private bool shelfCreated = false;
+    private List<UIShopItem> items = new List<UIShopItem>();
 
     void OnEnable() {
+        CreateShelf();
+        ColorItems();
         StartCoroutine("Appearance");
     }
 
@@ -20,6 +26,14 @@ public class UIShop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CreateShelf();
+    }
+
+    private bool CreateShelf() {
+        if (shelfCreated)
+            return false;
+        shelfCreated = true;
+
         Vector3 previousPos = Vector3.zero;
         foreach (var item in shop.prefabs)
         {
@@ -34,8 +48,19 @@ public class UIShop : MonoBehaviour
 
             instance.shop = this;
             instance.prefab = item.GetComponent<BaseBuilding>();
+
+            items.Add(instance);
+        }
+        return true;
+    }
+
+    private void ColorItems() {
+        foreach (var item in items) {
+            item.available = shop.world.resources > item.job.price;
         }
     }
+
+
 
     // Update is called once per frame
     void Update()

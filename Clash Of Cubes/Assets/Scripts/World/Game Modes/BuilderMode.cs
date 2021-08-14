@@ -33,11 +33,32 @@ public class BuilderMode : BaseMode
         StartCoroutine("ProjectBuilding");
     }
 
+    IEnumerator DeniedBuildingAnimation() {
+        building.transform.localScale = Vector3.one;
+
+        float duration = 0.1f;
+        Vector3 deltaScale = Vector3.one * 0.05f;
+        for (float time = 0; time < duration; time += Time.deltaTime) {
+            building.transform.localScale += deltaScale;
+            yield return null;
+        }
+        for (float time = 0; time < duration; time += Time.deltaTime) {
+            building.transform.localScale -= deltaScale;
+            yield return null;
+        }
+
+        building.transform.localScale = Vector3.one;
+    }
+
     public void Build() {
-        // print("Ability to built = " + field.AbleToBuild(building));
-        
-        print("Ability to built = " + field.MakeBusyForBuilding(building));
-        world.SetStandardMode();
+        if (field.MakeBusyForBuilding(building)) {
+            world.Buy(building.buildJob.price);
+            building.Build();
+            world.SetStandardMode();
+        } else {
+            print("Unable to Build!");
+            StartCoroutine("DeniedBuildingAnimation");
+        }
     }
 
     public void Cancel() {
