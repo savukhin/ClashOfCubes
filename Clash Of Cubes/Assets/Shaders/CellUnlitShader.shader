@@ -16,7 +16,7 @@ Shader "Unlit/CellUnlitShader"
         LOD 100
         
         // ZWrite On
-        ZTest Always
+        // ZTest Always
         // Cull Off
         Blend SrcAlpha OneMinusSrcAlpha
 

@@ -17,19 +17,9 @@ public class BuilderMode : BaseMode
         }
     }
 
-    public BuilderMode(BaseBuilding prefab, Vector3 startPosition=default(Vector3)) : base() {
-        // field.gameObject.SetActive(true);
-        // building = Instantiate(prefab, startPosition, Quaternion.identity);
-    }
-
-    ~BuilderMode() {
-        // field.gameObject.SetActive(false);
-    }
-
     IEnumerator ProjectBuilding() {
         for (;;) {
             building.transform.position = field.PlaceBuilding(building);
-            // print(field.PlaceBuilding(building));
             yield return null;
         }
     }
@@ -44,6 +34,9 @@ public class BuilderMode : BaseMode
     }
 
     public void Build() {
+        // print("Ability to built = " + field.AbleToBuild(building));
+        
+        print("Ability to built = " + field.MakeBusyForBuilding(building));
         world.SetStandardMode();
     }
 

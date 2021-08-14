@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class StandardUIController : BaseUI
 {
-    public GameObject blackPanel;
-    public UIResource gold;
-    public UIResource metal;
-    public UIResource diamonds;
+    [System.Serializable]
+    public class Events {
+        // public UnityEngine.Event closeMenu;
+        public UnityEngine.Events.UnityEvent closeMenu;
+    }
+    public Events events;
     public UIShop shop;
+
+    
 
     public void OpenShop() {
         blackPanel.gameObject.SetActive(true);
@@ -16,7 +20,6 @@ public class StandardUIController : BaseUI
     }
 
     public void CloseMenu() {
-        blackPanel.SetActive(false);
-        shop.gameObject.SetActive(false);
+        events.closeMenu.Invoke();
     }
 }

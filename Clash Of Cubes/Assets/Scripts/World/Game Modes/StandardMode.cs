@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class StandardMode : BaseMode
 {
-    public StandardMode() : base() {
-
-    }
-
-    ~StandardMode() {
-
-    }
-
     public override void Launch()
     {
         base.Launch();

@@ -4,30 +4,39 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
-    public StandardMode standardMode;
-    public BuilderMode builderMode;
-    public Camera mainCamera;
     public enum ModesEnum {
         Standard = 1,
         Builder = 2
     }
 
+    public StandardMode standardMode;
+    public BuilderMode builderMode;
+    public Camera mainCamera;
+    public UIRouter UI;
+    
+    public ResourceStack resources {
+        get {
+            return m_resources;
+        }
+        set {
+            m_resources = value;
+            UI.resources = value;
+        }
+    }
+
     private BaseMode currentMode;
+    private ResourceStack m_resources;
+    
 
     void Start() {
-        // if (mode == ModesEnum.Standard)
         currentMode = standardMode;
     }
 
     public void StartBuilder(BaseBuilding prefab) {
-        // Destroy(currentMode);
         Vector3 position = Vector3.back;
-        // currentMode = new BuilderMode(prefab, position);
         currentMode.Stop();
-        // builderMode.building = Instantiate(prefab, position, Quaternion.identity);
         builderMode.Launch(this, prefab);
         currentMode = builderMode;
-        // currentMode.Launch();
     }
 
     public void StopBuilder() {
