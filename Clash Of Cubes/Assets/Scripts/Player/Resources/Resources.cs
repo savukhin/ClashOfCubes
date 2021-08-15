@@ -2,30 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ResourceNamesEnum {
+    Gold = 1,
+    Metal = 2,
+    Diamond = 3,
+}
+
 [System.Serializable]
-public abstract class BaseResource
+public class BaseResource
 {
-    public string name;
+    public ResourceNamesEnum name;
     public int count = 0;
 }
 
 [System.Serializable]
 public class GoldResource: BaseResource {
     public GoldResource() {
-        name = "Gold";
+        name = ResourceNamesEnum.Gold;
     }
 }
 
 [System.Serializable]
 public class MetalResource: BaseResource {
     public MetalResource() {
-        name = "Metal";
+        name = ResourceNamesEnum.Metal;
     }
 }
 
 [System.Serializable]
 public class DiamondResource: BaseResource {
     public DiamondResource() {
-        name = "Diamond";
+        name = ResourceNamesEnum.Diamond;
     }
 }

@@ -41,4 +41,23 @@ public class ResourceStack
         result.diamond.count -= price.diamonds;
         return result;
     }
+
+    public static ResourceStack operator + (ResourceStack stack, BaseResource resource) {
+        ResourceStack result = stack.MemberwiseClone() as ResourceStack;
+        switch (resource.name)
+        {
+            case ResourceNamesEnum.Gold:
+                result.gold.count += resource.count;
+                break;
+            case ResourceNamesEnum.Metal:
+                result.metal.count += resource.count;
+                break;
+            case ResourceNamesEnum.Diamond:
+                result.diamond.count += resource.count;
+                break;
+            default:
+                break;
+        }
+        return result;
+    }
 }

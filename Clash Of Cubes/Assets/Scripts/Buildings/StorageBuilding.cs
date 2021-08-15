@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyHome : BaseBuilding
+public class StorageBuilding : BaseBuilding
 {
-    public string str;
-
     protected override void Launch()
     {
-        
+        throw new System.NotImplementedException();
     }
 
     protected override void Stop()

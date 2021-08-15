@@ -132,4 +132,8 @@ public class Field : MonoBehaviour
     public void Choose(BaseBuilding building) {
         world.ChooseBuilding(building);
     }
+
+    public void Product(BaseResource production) {
+        world.TakeResource(production);
+    }
 }

@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 160d6d1377aaa634fb45f85466b85124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1737384069}
   standardMode: {fileID: 699513371}
   builderMode: {fileID: 2054408207}
   mainCamera: {fileID: 963194227}
@@ -4292,6 +4293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 6295694816590235835, guid: dd7336b204e2fac479eaa39031960621, type: 3}
+  - {fileID: 8352523998942432722, guid: 12e44f6d9f5b3f64698c605cb4ff9798, type: 3}
+  - {fileID: 7257991366240482970, guid: f2ae33ddea8f824428eb8f3f2c4bcec3, type: 3}
   world: {fileID: 45384474}
 --- !u!1 &1273584529
 GameObject:
@@ -5596,13 +5599,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
     gold:
-      name: Gold
+      name: 1
       count: 100
     metal:
-      name: Metal
+      name: 2
       count: 100
     diamond:
-      name: Diamond
+      name: 3
       count: 100
   client: {fileID: 552686137}
   world: {fileID: 45384474}
@@ -5840,7 +5843,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2054408207}
         m_TargetAssemblyTypeName: BuilderMode, Assembly-CSharp
-        m_MethodName: Stop
+        m_MethodName: Cancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

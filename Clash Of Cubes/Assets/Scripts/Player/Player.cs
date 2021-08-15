@@ -19,4 +19,9 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    public void TakeResource(BaseResource resource) {
+        resources += resource;
+        world.resources = resources;
+    }
 }

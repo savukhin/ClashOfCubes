@@ -9,6 +9,7 @@ public class World : MonoBehaviour
         Builder = 2
     }
 
+    public Player player;
     public StandardMode standardMode;
     public BuilderMode builderMode;
     public Camera mainCamera;
@@ -70,5 +71,9 @@ public class World : MonoBehaviour
 
     public void ChooseBuilding(BaseBuilding building) {
         UI.ChooseBuilding(building);
+    }
+
+    public void TakeResource(BaseResource resource) {
+        player.TakeResource(resource);
     }
 }

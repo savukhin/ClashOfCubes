@@ -5,15 +5,15 @@ using UnityEngine;
 public class BuilderMode : BaseMode
 {
     public Field field;
-    private BaseBuilding m_building;
+    private BaseBuilding _building;
     private World world;
 
     public BaseBuilding building  {
         get {
-            return m_building;
+            return _building;
         }
         set {
-            m_building = value;
+            _building = value;
         }
     }
 
@@ -61,7 +61,7 @@ public class BuilderMode : BaseMode
     }
 
     public void Cancel() {
-        Destroy(building);
+        Destroy(building.gameObject);
         world.SetStandardMode();
     }
 

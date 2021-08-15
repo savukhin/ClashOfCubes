@@ -32,6 +32,17 @@ public abstract class BaseBuilding : MonoBehaviour
     public Vector2 shape;
     public BaseBuilding nextLevel;
     public ProgressBar bar;
+    public bool isWork {
+        get {
+            return _isWork;
+        }
+        set {
+            _isWork = value;
+            if (value == true) {
+                Launch();
+            }
+        }
+    }
 
     public bool isBuilding {
         get {
@@ -39,10 +50,15 @@ public abstract class BaseBuilding : MonoBehaviour
         }
     }
 
+    private bool _isWork = false;
+
     [System.NonSerialized] public Field field;
 
-    void Start() {
-        field.AddBuilding(this);
+    protected virtual void Start() {
+        if (isWork || isBuilding)
+            field.AddBuilding(this);
+        else
+            bar.gameObject.SetActive(false);
     }
 
     public void Choose() {
@@ -51,9 +67,11 @@ public abstract class BaseBuilding : MonoBehaviour
 
     public void Build() {
         buildJob.Launch();
+        buildJob.endEvent.AddListener(()=>{
+            isWork=true;
+        });
         StartCoroutine("BuildProcess");
     }
-
     IEnumerator BuildProcess() {
         bar.min = buildJob.startTime.ToFloat();
         bar.max = buildJob.endTime.ToFloat();
@@ -64,7 +82,7 @@ public abstract class BaseBuilding : MonoBehaviour
         Destroy(bar);
     }
 
-    public string UpgradeToString() {
+    public virtual string UpgradeToString() {
         string result = "";
         if (nextLevel) {
             result += "Upgrade 1";
@@ -73,4 +91,8 @@ public abstract class BaseBuilding : MonoBehaviour
         }
         return result;
     }
+
+    protected abstract void Launch();
+    protected abstract void Stop();
+
 }
