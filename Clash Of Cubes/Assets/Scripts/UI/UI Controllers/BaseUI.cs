@@ -11,9 +11,14 @@ public abstract class BaseUI : MonoBehaviour
     
     public ResourceStack resources {
         set {
+            print("Metal " + value.metal.count);
             gold.count = value.gold.count;
             metal.count = value.metal.count;
             diamonds.count = value.diamond.count;
+            print("Set Max");
+            gold.max = value.goldCapacity.count;
+            metal.max = value.metalCapacity.count;
+            diamonds.max = 0;
         }
         get {
             ResourceStack resources = new ResourceStack();

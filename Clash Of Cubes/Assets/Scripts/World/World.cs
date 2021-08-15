@@ -76,4 +76,8 @@ public class World : MonoBehaviour
     public void TakeResource(BaseResource resource) {
         player.TakeResource(resource);
     }
+
+    public void AddStorage(Storage storage) {
+        player.AddStorage(storage);
+    }
 }

@@ -56,11 +56,9 @@ public class UIShop : MonoBehaviour
 
     private void ColorItems() {
         foreach (var item in items) {
-            item.available = shop.world.resources > item.job.price;
+            item.available = shop.world.resources >= item.job.price;
         }
     }
-
-
 
     // Update is called once per frame
     void Update()

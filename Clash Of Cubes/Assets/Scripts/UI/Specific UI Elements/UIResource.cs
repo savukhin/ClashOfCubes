@@ -6,12 +6,23 @@ using UnityEngine.UI;
 public class UIResource : MonoBehaviour
 {
     public Text text;
+    public ProgressBar bar;
     public int count {
         get {
             return int.Parse(text.text);
         }
         set {
             text.text = value.ToString();
+            bar.current = value;
+        }
+    }
+
+    public int max {
+        get {
+            return (int)bar.max;
+        }
+        set {
+            bar.max = value;
         }
     }
 

@@ -38,8 +38,11 @@ public class Job
         endEvent.Invoke();
     }
 
-    public void Launch() {
+    public void Launch(bool instantly=false) {
         startTime = JobTime.FromFloat(Time.time);
+        if (instantly)
+            duration = JobTime.Zero;
+            
         endTime = duration + Time.time;
         runner.StartCoroutine(EndJob());
     }

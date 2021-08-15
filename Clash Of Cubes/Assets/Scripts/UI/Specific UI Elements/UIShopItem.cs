@@ -20,14 +20,12 @@ public class UIShopItem : MonoBehaviour
         }
     }
     public bool available {
-        get {
-            return true;
-        }
         set {
             if (value)
                 GetComponent<Image>().color = new Color(1,1,1,1);
             else
                 GetComponent<Image>().color = new Color(0,0,0,1);
+            GetComponent<Button>().enabled = value;
         }
     }
 

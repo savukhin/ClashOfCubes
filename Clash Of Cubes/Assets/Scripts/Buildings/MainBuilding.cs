@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainBuilding : BaseBuilding
+public class MainBuilding : StorageBuilding
 {
     protected override void Launch()
     {
-        // throw new System.NotImplementedException();
+        base.Launch();
     }
     protected override void Stop()
     {
-        // throw new System.NotImplementedException();
+        base.Stop();
     }
 }

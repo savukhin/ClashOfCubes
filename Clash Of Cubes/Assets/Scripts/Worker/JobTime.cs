@@ -12,6 +12,12 @@ public class JobTime
     public int minutes;
     public int seconds;
     public int milliseconds;
+
+    public static JobTime Zero {
+        get {
+            return JobTime.FromFloat(0);
+        }
+    }
     
     public float ToFloat() {
         float result = milliseconds / 1000f;

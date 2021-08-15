@@ -49,15 +49,19 @@ public class ProgressBar : MonoBehaviour
     private float width;
 
     void Refresh() {
-        float diff = (m_max - m_min);
-        if (diff == 0) {
-            handler.transform.localScale = Vector3.one;
-            handler.transform.localPosition = new Vector3(-width / 2f, 0f, 0f);
-            return;
-        }
+        float diff = (max - min);
+        float percent = 0;
+        if (diff == 0 && current == min)
+            percent = 0;
+            // handler.transform.localScale = Vector3.one;
+            // handler.transform.localPosition = new Vector3(width / 2f, 0f, 0f);
+        else if (diff == 0)
+            percent = 1;
+        else
+            percent = (current - min) / diff;
 
-        handler.transform.localScale = new Vector3((m_current - m_min) / diff, 1f, 1f);
-        handler.transform.localPosition = new Vector3(-width / 2f + (m_current - m_min) / diff / 2f * width, 0f, 0f);
+        handler.transform.localScale = new Vector3(percent, 1f, 1f);
+        handler.transform.localPosition = new Vector3(-width / 2f + percent * width / 2f, 0f, 0f);
     }
 
     // Start is called before the first frame update

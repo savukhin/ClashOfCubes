@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class StorageBuilding : BaseBuilding
 {
+    public Storage storage;
     protected override void Launch()
     {
-        throw new System.NotImplementedException();
+        field.AddStorage(storage);
     }
 
     protected override void Stop()
     {
-        throw new System.NotImplementedException();
     }
 }

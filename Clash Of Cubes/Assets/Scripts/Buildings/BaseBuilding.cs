@@ -9,6 +9,28 @@ public class Price {
     public int diamonds;
     public float realMoney;
 
+    public Price Clone() {
+        Price price = new Price();
+        price.gold = gold;
+        price.metal = metal;
+        price.diamonds = diamonds;
+        price.realMoney = realMoney;
+        return price;
+    }
+
+    public Price Normalize() {
+        Price price = this.MemberwiseClone() as Price;
+        if (price.gold < 0)
+            price.gold = 0;
+        if (price.metal < 0)
+            price.metal = 0;
+        if (price.diamonds < 0)
+            price.diamonds = 0;
+        if (price.realMoney < 0)
+            price.realMoney = 0;
+        return price;
+    }
+
     public override string ToString()
     {
         string res = "";
@@ -67,14 +89,20 @@ public abstract class BaseBuilding : MonoBehaviour
         field.Choose(this);
     }
 
-    public void Build() {
-        buildJob.Launch();
+    public void Build(bool instantly=false) {
         bar.gameObject.SetActive(true);
         buildJob.endEvent.AddListener(()=>{
-            isWork=true;
-            bar.gameObject.SetActive(false);
+            EndBuild();
         });
-        StartCoroutine("BuildProcess");
+
+        buildJob.Launch();
+        if (!instantly)
+            StartCoroutine("BuildProcess");
+    }
+
+    private void EndBuild() {
+        isWork = true;
+        bar.gameObject.SetActive(false);
     }
 
     IEnumerator BuildProcess() {
@@ -84,8 +112,6 @@ public abstract class BaseBuilding : MonoBehaviour
             bar.current = Time.time;
             yield return null;
         }
-
-        bar.gameObject.SetActive(false);
     }
 
     public virtual string UpgradeToString() {

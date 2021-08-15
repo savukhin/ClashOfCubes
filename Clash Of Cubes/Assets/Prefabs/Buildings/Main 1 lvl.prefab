@@ -1044,6 +1044,19 @@ MonoBehaviour:
   shape: {x: 5, y: 5}
   nextLevel: {fileID: 0}
   bar: {fileID: 6420934621037056777}
+  storage:
+    gold:
+      name: 1
+      count: 20
+    metal:
+      name: 2
+      count: 20
+    goldCapacity:
+      name: 1
+      count: 40
+    metalCapacity:
+      name: 2
+      count: 40
 --- !u!114 &8065024853455011042
 MonoBehaviour:
   m_ObjectHideFlags: 0

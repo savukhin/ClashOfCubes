@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// [ExecuteInEditMode]
 public class Field : MonoBehaviour
 {
     public class PlacedBuilding {
@@ -47,7 +46,6 @@ public class Field : MonoBehaviour
 
     void OnEnable() {
         CreateCells();
-        // LoadStartBuildings();
     }
 
     public void AddBuilding(BaseBuilding building) {
@@ -86,7 +84,7 @@ public class Field : MonoBehaviour
             int Y = int.Parse(result[i].Location.Y);
             cells[X][Y].gameObject.GetComponent<Renderer>().material.SetFloat("_Active", 1);;
             BaseBuilding instance = Instantiate(item, PlaceBuilding(item, cells[X][Y]), Quaternion.identity);
-            Build(instance, cells[X][Y]);
+            Build(instance, cells[X][Y], true);
         }
     }
 
@@ -156,13 +154,13 @@ public class Field : MonoBehaviour
         return true;
     }
 
-    public bool Build(BaseBuilding building, Cell cell=null) {
+    public bool Build(BaseBuilding building, Cell cell=null, bool instantly=false) {
         if (!AbleToBuild(building))
             return false;
         
         AddBuilding(building);
         building.field = this;
-        building.Build();
+        building.Build(instantly);
         
         if (cell == null)
             cell = GetForwardCell();
@@ -189,5 +187,9 @@ public class Field : MonoBehaviour
 
     public void Product(BaseResource production) {
         world.TakeResource(production);
+    }
+
+    public void AddStorage(Storage storage) {
+        world.AddStorage(storage);
     }
 }
