@@ -644,7 +644,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  shape: {x: 4, y: 3}
+  shape: {x: 3, y: 3}
   nextLevel: {fileID: 0}
   bar: {fileID: 5550570821356680394}
   productionPerHour:

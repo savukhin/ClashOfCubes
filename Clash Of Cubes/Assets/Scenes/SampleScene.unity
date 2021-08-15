@@ -1099,7 +1099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &373306794
 Transform:
   m_ObjectHideFlags: 0
@@ -2780,6 +2780,56 @@ MonoBehaviour:
   content: {fileID: 548641691}
   itemPrefab: {fileID: 4719071090251920883, guid: f72c20b58e6f6f4478fa411d481a6a2e, type: 3}
   parent: {fileID: 1095138182}
+--- !u!1 &916450012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916450014}
+  - component: {fileID: 916450013}
+  m_Layer: 0
+  m_Name: Building Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &916450013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916450012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c35e42a2c1a29246917b2233581c347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildings:
+  - building: {fileID: 8396774304775968878, guid: 14ce9ac18df57b740be64bbd615416d1, type: 3}
+    name: Main 1 lvl
+  - building: {fileID: 8252487843888097364, guid: f2ae33ddea8f824428eb8f3f2c4bcec3, type: 3}
+    name: Metal Miner 1 lvl
+  - building: {fileID: 8352523998942432723, guid: 12e44f6d9f5b3f64698c605cb4ff9798, type: 3}
+    name: Gold Miner 1 lvl
+--- !u!4 &916450014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916450012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.8296952, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937628483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,6 +4345,7 @@ MonoBehaviour:
   - {fileID: 6295694816590235835, guid: dd7336b204e2fac479eaa39031960621, type: 3}
   - {fileID: 8352523998942432722, guid: 12e44f6d9f5b3f64698c605cb4ff9798, type: 3}
   - {fileID: 7257991366240482970, guid: f2ae33ddea8f824428eb8f3f2c4bcec3, type: 3}
+  - {fileID: 8396774304775968879, guid: 14ce9ac18df57b740be64bbd615416d1, type: 3}
   world: {fileID: 45384474}
 --- !u!1 &1273584529
 GameObject:

@@ -50,6 +50,12 @@ public class ProgressBar : MonoBehaviour
 
     void Refresh() {
         float diff = (m_max - m_min);
+        if (diff == 0) {
+            handler.transform.localScale = Vector3.one;
+            handler.transform.localPosition = new Vector3(-width / 2f, 0f, 0f);
+            return;
+        }
+
         handler.transform.localScale = new Vector3((m_current - m_min) / diff, 1f, 1f);
         handler.transform.localPosition = new Vector3(-width / 2f + (m_current - m_min) / diff / 2f * width, 0f, 0f);
     }

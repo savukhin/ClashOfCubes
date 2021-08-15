@@ -27,7 +27,7 @@ public class BuilderMode : BaseMode
     public void Launch(World world, BaseBuilding prefab)
     {
         base.Launch();
-        field.gameObject.SetActive(true);
+        field.showGrid = true;
         this.world = world;
         building = Instantiate(prefab, field.PlaceBuilding(prefab), Quaternion.identity);
         StartCoroutine("ProjectBuilding");
@@ -68,7 +68,7 @@ public class BuilderMode : BaseMode
     public override void Stop()
     {
         base.Stop();
-        field.gameObject.SetActive(false);
+        field.showGrid = false;
         StopAllCoroutines();
     }
 }

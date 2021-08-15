@@ -55,10 +55,12 @@ public abstract class BaseBuilding : MonoBehaviour
     [System.NonSerialized] public Field field;
 
     protected virtual void Start() {
-        if (isWork || isBuilding)
+        if (isWork || isBuilding) {
             field.AddBuilding(this);
-        else
+            bar.gameObject.SetActive(true);
+        } else {
             bar.gameObject.SetActive(false);
+        }
     }
 
     public void Choose() {
@@ -67,11 +69,14 @@ public abstract class BaseBuilding : MonoBehaviour
 
     public void Build() {
         buildJob.Launch();
+        bar.gameObject.SetActive(true);
         buildJob.endEvent.AddListener(()=>{
             isWork=true;
+            bar.gameObject.SetActive(false);
         });
         StartCoroutine("BuildProcess");
     }
+
     IEnumerator BuildProcess() {
         bar.min = buildJob.startTime.ToFloat();
         bar.max = buildJob.endTime.ToFloat();
@@ -79,7 +84,8 @@ public abstract class BaseBuilding : MonoBehaviour
             bar.current = Time.time;
             yield return null;
         }
-        Destroy(bar);
+
+        bar.gameObject.SetActive(false);
     }
 
     public virtual string UpgradeToString() {

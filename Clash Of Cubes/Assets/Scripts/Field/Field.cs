@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// [ExecuteInEditMode]
 public class Field : MonoBehaviour
 {
+    public class PlacedBuilding {
+        public BaseBuilding building;
+        public Vector2 corner;
+    }
+    
     public Cell cellPrefab;
     public Vector2 shape;
     public Camera mainCamera;
@@ -16,14 +22,32 @@ public class Field : MonoBehaviour
     private Vector2 localCellSize;
     private Vector3 center;
     private List<List<Cell>> cells = new List<List<Cell>>();
+    private bool loaded = false;
+    private GameObject cellsMask;
+
+    public bool showGrid {
+        get {
+            if (cellsMask == null)
+                return false;
+            return cellsMask.gameObject.activeSelf;
+        }
+        set {
+            if (cellsMask == null)
+                return;
+            cellsMask.SetActive(value);
+        }
+    }
 
     void Start()
     {
         CreateCells();
+        LoadStartBuildings();
+        showGrid = false;
     }
 
     void OnEnable() {
         CreateCells();
+        // LoadStartBuildings();
     }
 
     public void AddBuilding(BaseBuilding building) {
@@ -33,9 +57,45 @@ public class Field : MonoBehaviour
         }
     }
 
+    private Vector3 PlaceBuilding(BaseBuilding building, Cell cell) {
+        if (cell == null)
+            return Vector3.zero;
+
+        Vector3 position = cell.transform.position;
+        Vector3 size = building.GetComponent<BoxCollider>().size;
+
+        position.y += fieldSize.y / 2 + size.y / 2;
+        position.x += localCellSize.x * building.shape.x / 2.0f - localCellSize.x / 2;
+        position.z += localCellSize.y * building.shape.y / 2.0f - localCellSize.y / 2;
+        return position;
+    }
+
+    public void LoadStartBuildings() {
+        if (loaded)
+            return;
+        loaded = true;
+        var result = StartBuildingsConfig.LoadData();
+        BuildingContainer container 
+                = GameObject.Find("Building Container").GetComponent<BuildingContainer>();
+        for (int i = 0; i < result.Count; i++) {
+            BaseBuilding item = container.find(result[i].Name);
+            if (item == null)
+                continue;
+            
+            int X = int.Parse(result[i].Location.X);
+            int Y = int.Parse(result[i].Location.Y);
+            cells[X][Y].gameObject.GetComponent<Renderer>().material.SetFloat("_Active", 1);;
+            BaseBuilding instance = Instantiate(item, PlaceBuilding(item, cells[X][Y]), Quaternion.identity);
+            Build(instance, cells[X][Y]);
+        }
+    }
+
     private void CreateCells() {
         if (cells.Count > 0)
             return;
+        
+        cellsMask = new GameObject();
+        cellsMask.transform.parent = transform;
 
         fieldSize = GetComponent<Collider>().bounds.size;
         center = transform.position;
@@ -50,7 +110,7 @@ public class Field : MonoBehaviour
                 float x = center.x - fieldSize.x / 2 + localCellSize.x / 2 + localCellSize.x * j;
                 Vector3 position = new Vector3(y, center.y, x);
                 cells[i].Add(
-                    Instantiate(cellPrefab, position, Quaternion.identity, transform)
+                    Instantiate(cellPrefab, position, Quaternion.identity, cellsMask.transform)
                     );
                 cells[i][j].position = new Vector2(i, j);
             }
@@ -96,14 +156,16 @@ public class Field : MonoBehaviour
         return true;
     }
 
-    public bool Build(BaseBuilding building) {
+    public bool Build(BaseBuilding building, Cell cell=null) {
         if (!AbleToBuild(building))
             return false;
         
         AddBuilding(building);
+        building.field = this;
         building.Build();
-
-        Cell cell = GetForwardCell();
+        
+        if (cell == null)
+            cell = GetForwardCell();
 
         for (int i = 0; i < building.shape.x; i++) {
             for (int j = 0; j < building.shape.y; j++) {
@@ -118,15 +180,7 @@ public class Field : MonoBehaviour
 
     public Vector3 PlaceBuilding(BaseBuilding building) {
         Cell cell = GetForwardCell();
-        if (cell == null)
-            return Vector3.zero;
-        Vector3 position = cell.transform.position;
-        Vector3 size = building.GetComponent<BoxCollider>().size;
-
-        position.y += fieldSize.y / 2 + size.y / 2;
-        position.x += localCellSize.x * building.shape.x / 2.0f - localCellSize.x / 2;
-        position.z += localCellSize.y * building.shape.y / 2.0f - localCellSize.y / 2;
-        return position;
+        return PlaceBuilding(building, cell);
     }
 
     public void Choose(BaseBuilding building) {
