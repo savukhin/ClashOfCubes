@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class ResourceStack
 {
-    public List<Storage> storages;
-    public DiamondResource diamond;
+    public List<Storage> storages = new List<Storage>();
+    public DiamondResource diamond = new DiamondResource();
 
     public BaseResource gold {
         get {

@@ -9,22 +9,29 @@ public class UIResource : MonoBehaviour
     public ProgressBar bar;
     public int count {
         get {
-            return int.Parse(text.text);
+            return _current;
         }
         set {
             text.text = value.ToString();
-            bar.current = value;
+            _current = value;
+            if (bar)
+                bar.current = value;
         }
     }
 
     public int max {
         get {
-            return (int)bar.max;
+            return _max;
         }
         set {
-            bar.max = value;
+            _max = value;
+            if (bar)
+                bar.max = value;
         }
     }
+
+    private int _current = 0;
+    private int _max = 0;
 
     // Start is called before the first frame update
     void Start()

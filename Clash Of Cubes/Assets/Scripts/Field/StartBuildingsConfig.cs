@@ -58,9 +58,6 @@ public static class StartBuildingsConfig
             XmlSerializer xs = new XmlSerializer(typeof(StartBuildingsXML.Xml),xRoot);
             var result = xs.Deserialize(fs) as StartBuildingsXML.Xml;
             
-            Debug.Log("Объект десериализован");
-            Debug.Log($"Имя: {result.Buildings.Building[0].Name} --- Location: {result.Buildings.Building[0].Location}" +
-                    result.Buildings.Building[0].Location.X + result.Buildings.Building[0].Location.Y);
             return result.Buildings.Building;
         }
     }

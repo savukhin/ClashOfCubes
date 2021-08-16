@@ -259,10 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4c12bd244d6a04f9360a4738a0ddfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildJob:
+  productionJob:
     price:
-      gold: 5
-      metal: 5
+      gold: 0
+      metal: 20
       diamonds: 0
       realMoney: 0
     duration:
@@ -278,9 +278,19 @@ MonoBehaviour:
   shape: {x: 4, y: 4}
   nextLevel: {fileID: 0}
   bar: {fileID: 281055249023644055}
-  capacity:
-  - name: 1
-    count: 20
+  storage:
+    gold:
+      name: 1
+      count: 0
+    metal:
+      name: 2
+      count: 0
+    goldCapacity:
+      name: 1
+      count: 20
+    metalCapacity:
+      name: 2
+      count: 0
 --- !u!114 &3823983903490317948
 MonoBehaviour:
   m_ObjectHideFlags: 0

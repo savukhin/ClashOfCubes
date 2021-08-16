@@ -368,10 +368,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5ec742c12713b4790f316abd62df0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildJob:
+  productionJob:
     price:
       gold: 0
-      metal: 20
+      metal: 15
       diamonds: 0
       realMoney: 0
     duration:
@@ -379,23 +379,11 @@ MonoBehaviour:
       days: 0
       hours: 0
       minutes: 0
-      seconds: 12
+      seconds: 10
       milliseconds: 0
     endEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6806852099633366712}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   shape: {x: 4, y: 3}
   nextLevel: {fileID: 0}
   bar: {fileID: 6806852099633366708}
@@ -623,11 +611,6 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: ad8c94d74a0540545996ec85e087f79f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f60aa03c1463a4a88271849cccdc76, type: 3}
---- !u!1 &6806852099633366712 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5656329263730305988, guid: 18f60aa03c1463a4a88271849cccdc76, type: 3}
-  m_PrefabInstance: {fileID: 1155624742729706876}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6806852099633366711 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5656329263730305995, guid: 18f60aa03c1463a4a88271849cccdc76, type: 3}
@@ -638,7 +621,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5656329263730305992, guid: 18f60aa03c1463a4a88271849cccdc76, type: 3}
   m_PrefabInstance: {fileID: 1155624742729706876}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6806852099633366712}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd3dad94de06d844eb834a2ef9cea006, type: 3}

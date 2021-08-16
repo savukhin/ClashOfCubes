@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c0513c813bb6644bd641887991eed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildJob:
+  productionJob:
     price:
       gold: 0
       metal: 0
@@ -1047,16 +1047,16 @@ MonoBehaviour:
   storage:
     gold:
       name: 1
-      count: 20
+      count: 60
     metal:
       name: 2
-      count: 20
+      count: 60
     goldCapacity:
       name: 1
-      count: 40
+      count: 100
     metalCapacity:
       name: 2
-      count: 40
+      count: 100
 --- !u!114 &8065024853455011042
 MonoBehaviour:
   m_ObjectHideFlags: 0

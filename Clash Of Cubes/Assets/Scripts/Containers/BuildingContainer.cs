@@ -14,8 +14,8 @@ public class BuildingContainer : MonoBehaviour
 
     private Dictionary<string, BaseBuilding> dict = new Dictionary<string, BaseBuilding>();
 
-    void Start() {
-        DontDestroyOnLoad(this);
+    void Awake() {
+        DontDestroyOnLoad(gameObject);
         foreach (var item in buildings)
         {
             dict.Add(item.name, item.building);

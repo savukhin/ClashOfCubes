@@ -616,9 +616,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5ec742c12713b4790f316abd62df0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildJob:
+  productionJob:
     price:
-      gold: 20
+      gold: 30
       metal: 0
       diamonds: 0
       realMoney: 0
@@ -627,23 +627,11 @@ MonoBehaviour:
       days: 0
       hours: 0
       minutes: 0
-      seconds: 12
+      seconds: 4
       milliseconds: 0
     endEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8227965782337430260}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   shape: {x: 3, y: 3}
   nextLevel: {fileID: 0}
   bar: {fileID: 5550570821356680394}

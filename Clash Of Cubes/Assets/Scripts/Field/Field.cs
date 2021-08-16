@@ -181,6 +181,10 @@ public class Field : MonoBehaviour
         return PlaceBuilding(building, cell);
     }
 
+    public void Unchoose() {
+        world.ChooseBuilding(null);
+    }
+
     public void Choose(BaseBuilding building) {
         world.ChooseBuilding(building);
     }

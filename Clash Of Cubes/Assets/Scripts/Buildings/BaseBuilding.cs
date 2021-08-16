@@ -48,9 +48,9 @@ public class Price {
     }
 }
 
-public abstract class BaseBuilding : MonoBehaviour
+public abstract class BaseBuilding : BaseProduction
 {
-    public Job buildJob;
+    // public Job buildJob;
     public Vector2 shape;
     public BaseBuilding nextLevel;
     public ProgressBar bar;
@@ -68,7 +68,7 @@ public abstract class BaseBuilding : MonoBehaviour
 
     public bool isBuilding {
         get {
-            return buildJob.inProcess;
+            return productionJob.inProcess;
         }
     }
 
@@ -91,11 +91,11 @@ public abstract class BaseBuilding : MonoBehaviour
 
     public void Build(bool instantly=false) {
         bar.gameObject.SetActive(true);
-        buildJob.endEvent.AddListener(()=>{
+        productionJob.endEvent.AddListener(()=>{
             EndBuild();
         });
 
-        buildJob.Launch();
+        productionJob.Launch(instantly);
         if (!instantly)
             StartCoroutine("BuildProcess");
     }
@@ -106,8 +106,8 @@ public abstract class BaseBuilding : MonoBehaviour
     }
 
     IEnumerator BuildProcess() {
-        bar.min = buildJob.startTime.ToFloat();
-        bar.max = buildJob.endTime.ToFloat();
+        bar.min = productionJob.startTime.ToFloat();
+        bar.max = productionJob.endTime.ToFloat();
         while (isBuilding) {
             bar.current = Time.time;
             yield return null;

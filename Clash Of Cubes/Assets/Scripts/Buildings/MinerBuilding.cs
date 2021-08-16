@@ -13,13 +13,9 @@ public class MinerBuilding : BaseBuilding
     protected override void Start()
     {
         base.Start();
-        print("MinerBuilding start");
         deltaTime = 60f * 60f / productionPerHour.count;
         deltaProduction.name = productionPerHour.name;
-        // deltaProduction.count = (int)(productionPerHour.count / 60f / 60f);
         deltaProduction.count = 1;
-        print(deltaTime);
-        print(deltaProduction);
     }
 
     protected override void Launch()

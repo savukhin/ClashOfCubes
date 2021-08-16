@@ -15,6 +15,10 @@ public class World : MonoBehaviour
     public Camera mainCamera;
     public UIRouter UI;
     public int workers;
+
+    void Awake() {
+        UI.world = this;
+    }
     
     public ResourceStack resources {
         get {

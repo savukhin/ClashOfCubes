@@ -61,7 +61,9 @@ public class ProgressBar : MonoBehaviour
             percent = (current - min) / diff;
 
         handler.transform.localScale = new Vector3(percent, 1f, 1f);
-        handler.transform.localPosition = new Vector3(-width / 2f + percent * width / 2f, 0f, 0f);
+        Vector3 pos = handler.transform.localPosition;
+        pos.x = -width / 2f + percent * width / 2f;
+        handler.transform.localPosition = pos;
     }
 
     // Start is called before the first frame update

@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     }
 
     public void AddStorage(Storage storage) {
-        print("player " + storage.metal.count);
         resources.storages.Add(storage);
         world.resources = resources;
     }

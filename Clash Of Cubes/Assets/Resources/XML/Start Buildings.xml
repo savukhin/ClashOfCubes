@@ -3,5 +3,8 @@
     <building name="Main 1 lvl">
         <location x="10" y="10" />
     </building>
+    <building name="Barracks 1 lvl">
+        <location x="7" y="7" />
+    </building>
 </buildings>
 </xml>

@@ -6,6 +6,7 @@ public class UIRouter : MonoBehaviour
 {
     public StandardUIController standard;
     public BuilderUIController builder;
+    [System.NonSerialized] public World world;
 
     public ResourceStack resources {
         set {
@@ -13,8 +14,12 @@ public class UIRouter : MonoBehaviour
             builder.resources = value;
         }
         get {
-            return standard.resources;
+            return world.resources;
         }
+    }
+
+    void Start() {
+        standard.UI = this;
     }
     
     public void ChooseBuilding(BaseBuilding building) {

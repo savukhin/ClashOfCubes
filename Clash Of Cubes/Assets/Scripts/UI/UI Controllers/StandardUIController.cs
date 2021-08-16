@@ -7,13 +7,14 @@ public class StandardUIController : BaseUI
 {
     [System.Serializable]
     public class Events {
-        // public UnityEngine.Event closeMenu;
         public UnityEngine.Events.UnityEvent closeMenu;
     }
     public Events events;
     public UIShop shop;
     public GameObject buildingActionsPanel;
     public UIBuildingInfo buildingInfo;
+    public UIProductionPanel productionPanel;
+    [System.NonSerialized] public UIRouter UI;
 
     public void OpenShop() {
         blackPanel.gameObject.SetActive(true);
@@ -31,5 +32,10 @@ public class StandardUIController : BaseUI
         }
         buildingActionsPanel.SetActive(true);
         buildingInfo.building = building;
+        if (building.GetType() == typeof(FactoryBuilding)) {
+            var factory = building as FactoryBuilding;
+            productionPanel.production = factory.production;
+            productionPanel.factory = factory;
+        }
     }
 }

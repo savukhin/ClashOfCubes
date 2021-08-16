@@ -52,7 +52,7 @@ public class BuilderMode : BaseMode
 
     public void Build() {
         if (field.Build(building)) {
-            world.Buy(building.buildJob.price);
+            world.Buy(building.productionJob.price);
             world.SetStandardMode();
         } else {
             print("Unable to Build!");

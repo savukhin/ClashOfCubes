@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIShopItem : MonoBehaviour
+public class UIProductionItem : MonoBehaviour
 {
     public GameObject placer;
     public Text priceText;
     public Job job;
-    public BaseBuilding prefab {
+    public BaseProduction prefab {
         get{
             return m_prefab;
         }
         set {
             m_prefab = value;
             Instantiate(value, placer.transform);
-            job = value.buildJob;
-            priceText.text = value.buildJob.price.ToString();
+            job = value.productionJob;
+            priceText.text = value.productionJob.price.ToString();
         }
     }
     public bool available {
@@ -30,8 +30,8 @@ public class UIShopItem : MonoBehaviour
     }
 
     [System.NonSerialized]
-    public UIShop shop;
-    private BaseBuilding m_prefab;
+    public UIProductionPanel panel;
+    private BaseProduction m_prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +46,11 @@ public class UIShopItem : MonoBehaviour
     }
 
     public void Close() {
-        shop.Close();
+        panel.Close();
     }
     
     public void Buy()
     {
-        shop.Buy(prefab);
+        panel.Buy(prefab);
     }
 }
