@@ -29,4 +29,9 @@ public class Player : MonoBehaviour
         resources.storages.Add(storage);
         world.resources = resources;
     }
+
+    public void AddCamp(Camp camp) {
+        resources.supply.Add(camp);
+        world.resources = resources;
+    }
 }

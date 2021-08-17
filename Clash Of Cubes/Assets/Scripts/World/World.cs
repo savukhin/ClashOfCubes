@@ -84,4 +84,8 @@ public class World : MonoBehaviour
     public void AddStorage(Storage storage) {
         player.AddStorage(storage);
     }
+
+    public void AddCamp(Camp camp) {
+        player.AddCamp(camp);
+    }
 }

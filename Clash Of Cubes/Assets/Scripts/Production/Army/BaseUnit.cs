@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class BaseUnit : BaseProduction
 {
-    public int space = 1;
+    public int supply = 1;
 }

@@ -22,13 +22,14 @@ public class AdditiveScrollView : MonoBehaviour
     }
 
     public void Remove(int index) {
-        // Destroy(items[index]);
-        for (int i = index; i < items.Count - 1; i++) {
-            items[i + 1].GetComponent<RectTransform>().position 
-                = items[i].GetComponent<RectTransform>().position;
-            items[i] = items[i + 1];
+        GameObject toDelete = items[index];
+        float dx = toDelete.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+        nextPosition.x -= dx;
+        for (int i = index; i < items.Count; i++) {
+            items[i].transform.localPosition -= new Vector3(dx, 0, 0);
         }
-        items.Capacity--;
+        items.Remove(toDelete);
+        Destroy(toDelete);
     }
 
     public void Clear() {

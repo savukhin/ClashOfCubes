@@ -6,6 +6,7 @@ using UnityEngine;
 public class ResourceStack
 {
     public List<Storage> storages = new List<Storage>();
+    public Supply supply = new Supply();
     public DiamondResource diamond = new DiamondResource();
 
     public BaseResource gold {

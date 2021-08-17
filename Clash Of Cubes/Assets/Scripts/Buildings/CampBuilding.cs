@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CampBuilding : BaseBuilding
 {
+    public Camp camp;
+
     protected override void Launch()
     {
-        throw new System.NotImplementedException();
+        field.AddCamp(camp);
+        // throw new System.NotImplementedException();
     }
 
     protected override void Stop()

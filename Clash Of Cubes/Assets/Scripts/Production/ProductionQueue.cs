@@ -12,9 +12,16 @@ public class ProductionQueue
     private void StartProduct(BaseProduction production) {
         current = production;
         current.productionJob.endEvent.AddListener(() => {
+            current = null;
+            Next();
             producedEvent.Invoke();
         });
         current.productionJob.Launch();
+    }
+
+    private void Next() {
+        if (queue.Count > 0)
+            StartProduct(queue.Dequeue());
     }
 
     public void Add(BaseProduction production) {
@@ -22,8 +29,9 @@ public class ProductionQueue
             StartProduct(production);
             return;
         } else if (current == null) {
-            BaseProduction prod = queue.Dequeue();
-            StartProduct(prod);
+            // BaseProduction prod = queue.Dequeue();
+            // StartProduct(prod);
+            Next();
         }
         queue.Enqueue(production);
     }

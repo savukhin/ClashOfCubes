@@ -14,7 +14,8 @@ public class UIProductionPanel : BaseUIShop
     public override void Buy(BaseProduction prefab) {
         var instance = scrollQueue
             .Add(queueItemPrefab.gameObject).GetComponent<UIQueueItem>();
-        instance.prefab = prefab;
+        var unit = Instantiate(prefab);
+        instance.prefab = unit;
         
         instance.job.endEvent.AddListener(() => {
             scrollQueue.Remove(0);
@@ -22,7 +23,7 @@ public class UIProductionPanel : BaseUIShop
             queueItems.Dequeue();
         });
 
-        factory.queue.Add(prefab);
+        factory.queue.Add(unit);
         instance.active = true;
         queueItems.Enqueue(instance);
     }

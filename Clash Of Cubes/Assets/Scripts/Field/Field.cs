@@ -137,8 +137,9 @@ public class Field : MonoBehaviour
         return null;
     }
 
-    private bool AbleToBuild(BaseBuilding building) {
-        Cell cell = GetForwardCell();
+    private bool AbleToBuild(BaseBuilding building, Cell cell=null) {
+        if (cell == null)
+            cell = GetForwardCell();
         if (cell == null)
             return false;
         
@@ -155,7 +156,7 @@ public class Field : MonoBehaviour
     }
 
     public bool Build(BaseBuilding building, Cell cell=null, bool instantly=false) {
-        if (!AbleToBuild(building))
+        if (!AbleToBuild(building, cell))
             return false;
         
         AddBuilding(building);
@@ -195,5 +196,9 @@ public class Field : MonoBehaviour
 
     public void AddStorage(Storage storage) {
         world.AddStorage(storage);
+    }
+
+    public void AddCamp(Camp camp) {
+        world.AddCamp(camp);
     }
 }

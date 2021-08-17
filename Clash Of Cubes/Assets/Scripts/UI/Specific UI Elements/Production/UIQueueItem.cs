@@ -7,7 +7,7 @@ public class UIQueueItem : BaseUIShopItem
     public ProgressBar bar;
     public bool active = false;
     void Update() {
-        if (!active)
+        if (!active || !job.inProcess)
             return;
 
         bar.min = job.startTime.ToFloat();

@@ -53,8 +53,6 @@ public class ProgressBar : MonoBehaviour
         float percent = 0;
         if (diff == 0 && current == min)
             percent = 0;
-            // handler.transform.localScale = Vector3.one;
-            // handler.transform.localPosition = new Vector3(width / 2f, 0f, 0f);
         else if (diff == 0)
             percent = 1;
         else
