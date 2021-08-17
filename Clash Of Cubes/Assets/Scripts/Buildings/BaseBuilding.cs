@@ -109,7 +109,8 @@ public abstract class BaseBuilding : BaseProduction
         bar.min = productionJob.startTime.ToFloat();
         bar.max = productionJob.endTime.ToFloat();
         while (isBuilding) {
-            bar.current = Time.time;
+            // bar.current = Time.time;
+            bar.current = productionJob.currentTime.ToFloat();
             yield return null;
         }
     }

@@ -9,8 +9,14 @@ public class Camp
     public List<BaseUnit> units = new List<BaseUnit>();
     public int used = 0;
 
+    public int remains {
+        get {
+            return capacity - used;
+        }
+    }
+
     public bool Add(BaseUnit unit) {
-        if (used + unit.supply > capacity) {
+        if (unit.supply > remains) {
             return false;
         }
         units.Add(unit);
@@ -22,9 +28,9 @@ public class Camp
         Camp camp = new Camp();
         camp.capacity = a.capacity + b.capacity;
         foreach (var unit in a.units)
-            camp.units.Add(unit);
+            camp.Add(unit);
         foreach (var unit in b.units)
-            camp.units.Add(unit);
+            camp.Add(unit);
         return camp;
     }
 }

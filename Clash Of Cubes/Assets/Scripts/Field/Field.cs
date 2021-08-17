@@ -201,4 +201,8 @@ public class Field : MonoBehaviour
     public void AddCamp(Camp camp) {
         world.AddCamp(camp);
     }
+
+    public bool AddUnit(BaseUnit unit) {
+        return world.AddUnit(unit);
+    }
 }

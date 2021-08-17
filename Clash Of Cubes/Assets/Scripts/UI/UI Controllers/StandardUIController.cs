@@ -11,7 +11,7 @@ public class StandardUIController : BaseUI
     }
     public Events events;
     public UIShop shop;
-    public GameObject buildingActionsPanel;
+    public UIBuildingActions buildingActionsPanel;
     public UIBuildingInfo buildingInfo;
     public UIProductionPanel productionPanel;
     [System.NonSerialized] public UIRouter UI;
@@ -27,15 +27,21 @@ public class StandardUIController : BaseUI
 
     public void ChooseBuilding(BaseBuilding building) {
         if (building == null) {
-            buildingActionsPanel.SetActive(false);
+            // buildingActionsPanel.SetActive(false);
+            buildingActionsPanel.Deactivate();
             return;
         }
-        buildingActionsPanel.SetActive(true);
+        // buildingActionsPanel.SetActive(true);
+        buildingActionsPanel.Activate(building);
         buildingInfo.building = building;
         if (building.GetType() == typeof(FactoryBuilding)) {
             var factory = building as FactoryBuilding;
             productionPanel.production = factory.production;
             productionPanel.factory = factory;
         }
+    }
+
+    public bool Buy(BaseProduction production) {
+        return UI.Buy(production);
     }
 }

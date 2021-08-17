@@ -38,8 +38,12 @@ public class World : MonoBehaviour
         currentMode = standardMode;
     }
 
-    public void Buy(Price price) {
-        resources -= price;
+    public bool Buy(Price price) {
+        if (resources >= price) {
+            resources -= price;
+            return true;
+        }
+        return false;
     }
 
     public bool StartJob(Job job) {
@@ -87,5 +91,9 @@ public class World : MonoBehaviour
 
     public void AddCamp(Camp camp) {
         player.AddCamp(camp);
+    }
+
+    public bool AddUnit(BaseUnit unit) {
+        return player.AddUnit(unit);
     }
 }

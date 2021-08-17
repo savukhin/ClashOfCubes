@@ -5,16 +5,39 @@ using UnityEngine;
 public class ProductionQueue
 {
     public UnityEngine.Events.UnityEvent producedEvent = new UnityEngine.Events.UnityEvent();
+    public UnityEngine.Events.UnityEvent stopEvent = new UnityEngine.Events.UnityEvent();
+    public UnityEngine.Events.UnityEvent resumeEvent = new UnityEngine.Events.UnityEvent();
     [System.NonSerialized] public Queue<BaseProduction> queue = new Queue<BaseProduction>();
     [System.NonSerialized] public BaseProduction current;
+    public BaseProduction lastProduced;
+    public FactoryBuilding factory;
     public bool isWork = true;
+
+    private class CoroutineHolder : MonoBehaviour { }
+ 
+    private static CoroutineHolder _runner;
+    private static CoroutineHolder runner {
+        get {
+            if (_runner == null) {
+                _runner = new GameObject("Static Corotuine Runner").AddComponent<CoroutineHolder>();
+            }
+            return _runner;
+        }
+    }
+
+    IEnumerator TryProduce(BaseProduction production) {
+        lastProduced = current;
+        while(factory.Produced(production) == false)
+            yield return null;
+        current = null;
+        Next();
+        producedEvent.Invoke();
+    }
 
     private void StartProduct(BaseProduction production) {
         current = production;
         current.productionJob.endEvent.AddListener(() => {
-            current = null;
-            Next();
-            producedEvent.Invoke();
+            runner.StartCoroutine(TryProduce(current));
         });
         current.productionJob.Launch();
     }
@@ -29,8 +52,6 @@ public class ProductionQueue
             StartProduct(production);
             return;
         } else if (current == null) {
-            // BaseProduction prod = queue.Dequeue();
-            // StartProduct(prod);
             Next();
         }
         queue.Enqueue(production);

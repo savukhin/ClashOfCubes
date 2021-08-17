@@ -25,4 +25,8 @@ public class UIRouter : MonoBehaviour
     public void ChooseBuilding(BaseBuilding building) {
         standard.ChooseBuilding(building);
     }
+
+    public bool Buy(BaseProduction production) {
+        return world.Buy(production.productionJob.price);
+    }
 }

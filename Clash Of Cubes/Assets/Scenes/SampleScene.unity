@@ -1325,7 +1325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bbb6d5babde124685851c79c9e1820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
+  info: {fileID: 1152526619}
+  production: {fileID: 813272646}
 --- !u!1001 &318745248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5137,7 +5138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 2
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -5274,7 +5275,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   shop: {fileID: 870896517}
-  buildingActionsPanel: {fileID: 318642706}
+  buildingActionsPanel: {fileID: 318642710}
   buildingInfo: {fileID: 1753239356}
   productionPanel: {fileID: 460166584}
 --- !u!114 &1096236733 stripped
@@ -5466,9 +5467,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackPanel: {fileID: 578220972}
-  golds: []
-  metals: []
-  diamonds: []
+  golds:
+  - {fileID: 736863322}
+  metals:
+  - {fileID: 303178794}
+  diamonds:
+  - {fileID: 308970742}
   supplies: []
 --- !u!114 &1157557609
 MonoBehaviour:
@@ -5499,7 +5503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 2
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -7735,6 +7739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
     storages: []
+    supply:
+      camps: []
     diamond:
       name: 3
       count: 100

@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace StartBuildingsXML
 {
@@ -47,15 +48,22 @@ public static class StartBuildingsConfig
 {
     public static List<StartBuildingsXML.Building> LoadData()
     {
+		TextAsset textAsset = (TextAsset)Resources.Load("XML/Start Buildings", typeof(TextAsset));
+		XmlDocument xmldoc = new XmlDocument ();
+		xmldoc.LoadXml ( textAsset.text );
+		Debug.Log(xmldoc.SelectNodes("//buildings")[0]);
+
         string filepath = Application.dataPath + @"/Resources/XML/Start Buildings.xml";
 
-        using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate))
+        // using (FileStream fs = new FileStream(filepath, FileMode.OpenOrCreate))
+        using (TextReader fs = new StringReader(textAsset.text))
         {
             XmlRootAttribute xRoot = new XmlRootAttribute();
             xRoot.ElementName = "xml";
             xRoot.IsNullable = true;
 
             XmlSerializer xs = new XmlSerializer(typeof(StartBuildingsXML.Xml),xRoot);
+			// xs.Deserialize(xmldoc)
             var result = xs.Deserialize(fs) as StartBuildingsXML.Xml;
             
             return result.Buildings.Building;

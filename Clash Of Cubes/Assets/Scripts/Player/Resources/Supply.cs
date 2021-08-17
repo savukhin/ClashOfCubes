@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Supply : LimitedResource
+[System.Serializable]
+public class Supply
 {
     public List<Camp> camps = new List<Camp>();
 
@@ -15,6 +16,12 @@ public class Supply : LimitedResource
     public int used {
         get {
             return SumCamps().used;
+        }
+    }
+
+    public int remains {
+        get {
+            return SumCamps().remains;
         }
     }
 
@@ -34,5 +41,17 @@ public class Supply : LimitedResource
 
     public void Add(Camp camp) {
         camps.Add(camp);
+    }
+
+    // Returns true if able to add
+    public bool Add(BaseUnit unit) {
+        foreach (var camp in camps)
+        {
+            if (camp.remains >= unit.supply) {
+                camp.Add(unit);
+                return true;
+            }
+        }
+        return false;
     }
 }

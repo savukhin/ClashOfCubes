@@ -5,13 +5,21 @@ using UnityEngine;
 public class UIQueueItem : BaseUIShopItem
 {
     public ProgressBar bar;
-    public bool active = false;
+
     void Update() {
-        if (!active || !job.inProcess)
+        if (job.ended) {
             return;
+        }
+
+        if (!job.inProcess) {
+            bar.min = 0;
+            bar.max = 0;
+            bar.current = 0;
+            return;
+        }
 
         bar.min = job.startTime.ToFloat();
         bar.max = job.endTime.ToFloat();
-        bar.current = Time.time;
+        bar.current = job.currentTime.ToFloat();
     }
 }

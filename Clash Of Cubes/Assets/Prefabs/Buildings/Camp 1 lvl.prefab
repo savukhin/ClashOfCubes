@@ -80,7 +80,7 @@ MonoBehaviour:
   nextLevel: {fileID: 0}
   bar: {fileID: 2398274032427882137}
   camp:
-    capacity: 20
+    capacity: 5
     units: []
     used: 0
 --- !u!114 &1711199485933287794

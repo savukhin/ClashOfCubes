@@ -34,4 +34,11 @@ public class Player : MonoBehaviour
         resources.supply.Add(camp);
         world.resources = resources;
     }
+
+    public bool AddUnit(BaseUnit unit) {
+        if (!resources.supply.Add(unit))
+            return false;
+        world.resources = resources;
+        return true;
+    }
 }

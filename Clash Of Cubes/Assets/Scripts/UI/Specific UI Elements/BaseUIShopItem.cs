@@ -25,7 +25,6 @@ public abstract class BaseUIShopItem : MonoBehaviour
     public bool available {
         set {
             if (value) {
-                print(this + "Available");
                 GetComponent<Image>().color = new Color(1,1,1,1);
             } else {
                 GetComponent<Image>().color = new Color(0,0,0,1);
